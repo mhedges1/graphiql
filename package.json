@@ -17,6 +17,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "main": "dist/index.js",
   "files": [
+    "src",
     "dist",
     "graphiql.js",
     "graphiql.min.js",
