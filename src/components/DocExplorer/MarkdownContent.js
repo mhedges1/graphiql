@@ -10,11 +10,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MD from 'markdown-it';
 
-const md = new MD();
-
 export default class MarkdownContent extends React.Component {
   static propTypes = {
     markdown: PropTypes.string,
+    markdownRenderer: PropTypes.shape({
+      render: PropTypes.func,
+    }),
     className: PropTypes.string,
   };
 
@@ -27,6 +28,8 @@ export default class MarkdownContent extends React.Component {
     if (!markdown) {
       return <div />;
     }
+
+    const md = this.props.markdownRenderer ? this.props.markdownRenderer : new MD();
 
     return (
       <div

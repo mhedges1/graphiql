@@ -46,6 +46,9 @@ export class GraphiQL extends React.Component {
   static propTypes = {
     fetcher: PropTypes.func.isRequired,
     schema: PropTypes.instanceOf(GraphQLSchema),
+    markdownRenderer: PropTypes.shape({
+      render: PropTypes.func,
+    }),
     query: PropTypes.string,
     variables: PropTypes.string,
     operationName: PropTypes.string,
