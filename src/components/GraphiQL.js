@@ -46,9 +46,7 @@ export class GraphiQL extends React.Component {
   static propTypes = {
     fetcher: PropTypes.func.isRequired,
     schema: PropTypes.instanceOf(GraphQLSchema),
-    markdownRenderer: PropTypes.shape({
-      render: PropTypes.func,
-    }),
+    markdownConfig: PropTypes.object,
     query: PropTypes.string,
     variables: PropTypes.string,
     operationName: PropTypes.string,
@@ -391,7 +389,8 @@ export class GraphiQL extends React.Component {
             ref={c => {
               this.docExplorerComponent = c;
             }}
-            schema={this.state.schema}>
+            schema={this.state.schema}
+            markdownConfig={this.props.markdownConfig}>
             <div className="docExplorerHide" onClick={this.handleToggleDocs}>
               {'\u2715'}
             </div>

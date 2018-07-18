@@ -17,6 +17,7 @@ export default class SchemaDoc extends React.Component {
   static propTypes = {
     schema: PropTypes.object,
     onClickType: PropTypes.func,
+    markdownConfig: PropTypes.object,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -33,6 +34,7 @@ export default class SchemaDoc extends React.Component {
     return (
       <div>
         <MarkdownContent
+          markdownConfig={this.props.markdownConfig}
           className="doc-type-description"
           markdown={
             'A GraphQL schema provides a root type for each kind of operation.'

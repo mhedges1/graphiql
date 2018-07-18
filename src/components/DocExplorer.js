@@ -40,6 +40,7 @@ const initialNav = {
 export class DocExplorer extends React.Component {
   static propTypes = {
     schema: PropTypes.instanceOf(GraphQLSchema),
+    markdownConfig: PropTypes.object,
   };
 
   constructor() {
@@ -88,13 +89,17 @@ export class DocExplorer extends React.Component {
       );
     } else if (navStack.length === 1) {
       content = (
-        <SchemaDoc schema={schema} onClickType={this.handleClickTypeOrField} />
+        <SchemaDoc
+          schema={schema}
+          markdownConfig={this.props.markdownConfig}
+          onClickType={this.handleClickTypeOrField} />
       );
     } else if (isType(navItem.def)) {
       content = (
         <TypeDoc
           schema={schema}
           type={navItem.def}
+          markdownConfig={this.props.markdownConfig}
           onClickType={this.handleClickTypeOrField}
           onClickField={this.handleClickTypeOrField}
         />
@@ -103,6 +108,7 @@ export class DocExplorer extends React.Component {
       content = (
         <FieldDoc
           field={navItem.def}
+          markdownConfig={this.props.markdownConfig}
           onClickType={this.handleClickTypeOrField}
         />
       );

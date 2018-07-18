@@ -17,6 +17,7 @@ export default class FieldDoc extends React.Component {
   static propTypes = {
     field: PropTypes.object,
     onClickType: PropTypes.func,
+    markdownConfig: PropTypes.object,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -39,6 +40,7 @@ export default class FieldDoc extends React.Component {
                 <Argument arg={arg} onClickType={this.props.onClickType} />
               </div>
               <MarkdownContent
+                markdownConfig={this.props.markdownConfig}
                 className="doc-value-description"
                 markdown={arg.description}
               />
@@ -51,11 +53,13 @@ export default class FieldDoc extends React.Component {
     return (
       <div>
         <MarkdownContent
+          markdownConfig={this.props.markdownConfig}
           className="doc-type-description"
           markdown={field.description || 'No Description'}
         />
         {field.deprecationReason &&
           <MarkdownContent
+            markdownConfig={this.props.markdownConfig}
             className="doc-deprecation"
             markdown={field.deprecationReason}
           />}

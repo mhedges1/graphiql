@@ -27,6 +27,7 @@ export default class TypeDoc extends React.Component {
     type: PropTypes.object,
     onClickType: PropTypes.func,
     onClickField: PropTypes.func,
+    markdownConfig: PropTypes.object,
   };
 
   constructor(props) {
@@ -158,6 +159,7 @@ export default class TypeDoc extends React.Component {
     return (
       <div>
         <MarkdownContent
+          markdownConfig={this.props.markdownConfig}
           className="doc-type-description"
           markdown={type.description || 'No Description'}
         />
@@ -197,12 +199,14 @@ function Field({ type, field, onClickType, onClickField }) {
       <DefaultValue field={field} />
       {field.description && (
         <MarkdownContent
+          markdownConfig={this.props.markdownConfig}
           className="field-short-description"
           markdown={field.description}
         />
       )}
       {field.deprecationReason && (
         <MarkdownContent
+          markdownConfig={this.props.markdownConfig}
           className="doc-deprecation"
           markdown={field.deprecationReason}
         />
@@ -223,11 +227,13 @@ function EnumValue({ value }) {
     <div className="doc-category-item">
       <div className="enum-value">{value.name}</div>
       <MarkdownContent
+        markdownConfig={this.props.markdownConfig}
         className="doc-value-description"
         markdown={value.description}
       />
       {value.deprecationReason && (
         <MarkdownContent
+          markdownConfig={this.props.markdownConfig}
           className="doc-deprecation"
           markdown={value.deprecationReason}
         />
