@@ -48,6 +48,7 @@ export default class TypeDoc extends React.Component {
     const type = this.props.type;
     const onClickType = this.props.onClickType;
     const onClickField = this.props.onClickField;
+    const markdownConfig = this.props.markdownConfig;
 
     let typesTitle;
     let types;
@@ -94,6 +95,7 @@ export default class TypeDoc extends React.Component {
                 field={field}
                 onClickType={onClickType}
                 onClickField={onClickField}
+                markdownConfig={markdownConfig}
               />
             ))}
         </div>
@@ -116,6 +118,7 @@ export default class TypeDoc extends React.Component {
                   field={field}
                   onClickType={onClickType}
                   onClickField={onClickField}
+                  markdownConfig={markdownConfig}
                 />
               ))
             )}
@@ -159,7 +162,7 @@ export default class TypeDoc extends React.Component {
     return (
       <div>
         <MarkdownContent
-          markdownConfig={this.props.markdownConfig}
+          markdownConfig={markdownConfig}
           className="doc-type-description"
           markdown={type.description || 'No Description'}
         />
@@ -176,7 +179,7 @@ export default class TypeDoc extends React.Component {
   handleShowDeprecated = () => this.setState({ showDeprecated: true });
 }
 
-function Field({ type, field, onClickType, onClickField }) {
+function Field({ type, field, onClickType, onClickField, markdownConfig }) {
   return (
     <div className="doc-category-item">
       <a
@@ -199,7 +202,7 @@ function Field({ type, field, onClickType, onClickField }) {
       <DefaultValue field={field} />
       {field.description && (
         <MarkdownContent
-          markdownConfig={this.props.markdownConfig}
+          markdownConfig={markdownConfig}
           className="field-short-description"
           markdown={field.description}
         />
@@ -220,6 +223,7 @@ Field.propTypes = {
   field: PropTypes.object,
   onClickType: PropTypes.func,
   onClickField: PropTypes.func,
+  markdownConfig: PropTypes.object,
 };
 
 function EnumValue({ value }) {
