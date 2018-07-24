@@ -40,6 +40,7 @@ export class QueryEditor extends React.Component {
     onPrettifyQuery: PropTypes.func,
     onRunQuery: PropTypes.func,
     editorTheme: PropTypes.string,
+    markdownConfig: PropTypes.object,
   };
 
   constructor(props) {
@@ -49,6 +50,7 @@ export class QueryEditor extends React.Component {
     // editor is updated, which can later be used to protect the editor from
     // unnecessary updates during the update lifecycle.
     this.cachedValue = props.value || '';
+    this.md = new MD(props.markdownConfig);
   }
 
   componentDidMount() {
@@ -97,7 +99,7 @@ export class QueryEditor extends React.Component {
       },
       info: {
         schema: this.props.schema,
-        renderDescription: text => md.render(text),
+        renderDescription: text => this.md.render(text),
         onClick: reference => this.props.onClickReference(reference),
       },
       jump: {
