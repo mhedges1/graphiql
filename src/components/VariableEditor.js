@@ -34,6 +34,7 @@ export class VariableEditor extends React.Component {
     onPrettifyQuery: PropTypes.func,
     onRunQuery: PropTypes.func,
     editorTheme: PropTypes.string,
+    markdownConfig: PropTypes.object,
   };
 
   constructor(props) {
@@ -203,6 +204,11 @@ export class VariableEditor extends React.Component {
   };
 
   _onHasCompletion = (cm, data) => {
-    onHasCompletion(cm, data, this.props.onHintInformationRender);
+    onHasCompletion(
+      cm,
+      data,
+      this.props.onHintInformationRender,
+      this.props.markdownConfig
+    );
   };
 }

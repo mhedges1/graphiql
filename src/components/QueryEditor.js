@@ -213,7 +213,12 @@ export class QueryEditor extends React.Component {
    * about the type and description for the selected context.
    */
   _onHasCompletion = (cm, data) => {
-    onHasCompletion(cm, data, this.props.onHintInformationRender);
+    onHasCompletion(
+      cm,
+      data,
+      this.props.onHintInformationRender,
+      this.props.markdownConfig
+    );
   };
 
   _onBeforeChange(instance, change) {

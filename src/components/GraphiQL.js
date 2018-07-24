@@ -360,6 +360,7 @@ export class GraphiQL extends React.Component {
                   onPrettifyQuery={this.handlePrettifyQuery}
                   onRunQuery={this.handleEditorRunQuery}
                   editorTheme={this.props.editorTheme}
+                  markdownConfig={this.props.markdownConfig}
                 />
               </div>
             </div>

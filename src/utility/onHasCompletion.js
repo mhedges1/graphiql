@@ -9,13 +9,13 @@
 import { GraphQLNonNull, GraphQLList } from 'graphql';
 import MD from 'markdown-it';
 
-const md = new MD();
 
 /**
  * Render a custom UI for CodeMirror's hint which includes additional info
  * about the type and description for the selected context.
  */
-export default function onHasCompletion(cm, data, onHintInformationRender) {
+export default function onHasCompletion(cm, data, onHintInformationRender, markdownConfig) {
+  const md = new MD(markdownConfig);
   const CodeMirror = require('codemirror');
 
   let information;
