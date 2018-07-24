@@ -6,7 +6,7 @@
   list-style: none;
   margin-left: -6px;
   margin: 0;
-  max-height: 14.5em;
+  max-height: 300px;
   overflow-y: auto;
   overflow: hidden;
   padding: 0;
@@ -43,6 +43,13 @@ li.CodeMirror-hint-active {
   border-bottom: solid 1px #c0c0c0;
   border-top: none;
   margin-bottom: -1px;
+}
+
+.CodeMirror-hint-information .content {
+  max-height: 200px;
+  font-size: 12px;
+  flex-flow: column nowrap;
+  overflow: auto;
 }
 
 .CodeMirror-hint-deprecation {
