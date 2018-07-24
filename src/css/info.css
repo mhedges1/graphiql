@@ -22,11 +22,12 @@
   margin: 8px -8px;
   max-width: 400px;
   opacity: 0;
-  overflow: hidden;
   padding: 8px 8px;
   position: fixed;
   transition: opacity 0.15s;
   z-index: 50;
+  height: auto;
+  overflow: auto;
 }
 
 .CodeMirror-info :first-child {

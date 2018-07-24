@@ -13,7 +13,6 @@ import MD from 'markdown-it';
 import { normalizeWhitespace } from '../utility/normalizeWhitespace';
 import onHasCompletion from '../utility/onHasCompletion';
 
-const md = new MD();
 const AUTO_COMPLETE_AFTER_KEY = /^[a-zA-Z0-9_@(]$/;
 
 /**
@@ -44,7 +43,7 @@ export class QueryEditor extends React.Component {
   };
 
   constructor(props) {
-    super();
+    super(props);
 
     // Keep a cached version of the value, this cache will be updated when the
     // editor is updated, which can later be used to protect the editor from
@@ -99,7 +98,7 @@ export class QueryEditor extends React.Component {
       },
       info: {
         schema: this.props.schema,
-        renderDescription: text => this.md.render(text),
+        renderDescription: text => this.md.renderInline(text),
         onClick: reference => this.props.onClickReference(reference),
       },
       jump: {
