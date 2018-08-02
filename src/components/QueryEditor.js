@@ -52,13 +52,27 @@ export class QueryEditor extends React.Component {
     this.md = new MD(props.markdownConfig);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     // Lazily require to ensure requiring GraphiQL outside of a Browser context
     // does not produce an error.
-    const { default: CodeMirror } = await import(
-      /* webpackChunkName: "codemirror" */
-      '../utility/codemirror'
-    );
+    const CodeMirror = require('codemirror');
+    require('codemirror/addon/hint/show-hint');
+    require('codemirror/addon/comment/comment');
+    require('codemirror/addon/edit/matchbrackets');
+    require('codemirror/addon/edit/closebrackets');
+    require('codemirror/addon/fold/foldgutter');
+    require('codemirror/addon/fold/brace-fold');
+    require('codemirror/addon/search/search');
+    require('codemirror/addon/search/searchcursor');
+    require('codemirror/addon/search/jump-to-line');
+    require('codemirror/addon/dialog/dialog');
+    require('codemirror/addon/lint/lint');
+    require('codemirror/keymap/sublime');
+    require('codemirror-graphql/hint');
+    require('codemirror-graphql/lint');
+    require('codemirror-graphql/info');
+    require('codemirror-graphql/jump');
+    require('codemirror-graphql/mode');
 
     this.editor = CodeMirror(this._node, {
       value: this.props.value || '',
@@ -133,11 +147,8 @@ export class QueryEditor extends React.Component {
     this.editor.on('beforeChange', this._onBeforeChange);
   }
 
-  async componentDidUpdate(prevProps) {
-    const { default: CodeMirror } = await import(
-      /* webpackChunkName: 'codemirror' */
-      '../utility/codemirror'
-    );
+  componentDidUpdate(prevProps) {
+    const CodeMirror = require('codemirror');
 
     // Ensure the changes caused by this update are not interpretted as
     // user-input changes which could otherwise result in an infinite
