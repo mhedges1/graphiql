@@ -15,6 +15,6 @@ browserify -g browserify-shim -s GraphiQL dist/index.js > graphiql.js
 echo "Bundling graphiql.min.js..."
 browserify -g browserify-shim -t uglifyify -s GraphiQL dist/index.js 2> /dev/null | uglifyjs -c > graphiql.min.js 2> /dev/null
 echo "Bundling graphiql.css..."
-postcss --no-map --use autoprefixer -d dist/ css/*.css
+postcss --no-map --use autoprefixer -d dist/ src/css/*.css
 cat dist/*.css > graphiql.css
 echo "Done"
